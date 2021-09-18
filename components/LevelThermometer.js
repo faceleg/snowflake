@@ -9,7 +9,7 @@ const margins = {
   left: 10
 }
 const height = 150
-const width = 550
+const width = 550;
 
 type Props = {
   categoryPointsFromMilestoneMap: [],
