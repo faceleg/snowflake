@@ -1,15 +1,8 @@
-// @flow
-
-import type { MilestoneMap } from '../constants'
 import React from 'react'
+import PropTypes from 'prop-types'
 
-type Props = {
-  totalPointsFromMilestoneMap: Number,
-  milestoneByTrack: MilestoneMap
-}
-
-class PointSummaries extends React.Component<Props> {
-  render() {
+class PointSummaries extends React.Component {
+  render () {
     const totalPoints = this.props.totalPointsFromMilestoneMap
     const pointsToLevels = this.props.pointsToLevels
 
@@ -21,6 +14,7 @@ class PointSummaries extends React.Component<Props> {
     }
 
     let pointsToNextLevel = 1
+    // eslint-disable-next-line no-unused-vars
     while (!(nextLevel = pointsToLevels[totalPoints + pointsToNextLevel])) {
       pointsToNextLevel++
       if (pointsToNextLevel > 135) {
@@ -70,14 +64,14 @@ class PointSummaries extends React.Component<Props> {
         `}</style>
         <tbody>
           <tr>
-          {blocks.map(({label}, i) => (
+          {blocks.map(({ label }, i) => (
             <th key={i} className="point-summary-label">
               {label}
             </th>
           ))}
           </tr>
           <tr>
-          {blocks.map(({value}, i) => (
+          {blocks.map(({ value }, i) => (
             <td key={i} className="point-summary-value">
               {value}
             </td>
@@ -87,6 +81,13 @@ class PointSummaries extends React.Component<Props> {
       </table>
     )
   }
+}
+
+PointSummaries.propTypes = {
+
+  totalPointsFromMilestoneMap: PropTypes.number,
+  milestoneByTrack: PropTypes.object,
+  pointsToLevels: PropTypes.func
 }
 
 export default PointSummaries

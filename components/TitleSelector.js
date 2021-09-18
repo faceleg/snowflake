@@ -1,17 +1,8 @@
-// @flow
-
 import React from 'react'
-import type { MilestoneMap } from '../constants'
+import PropTypes from 'prop-types'
 
-type Props = {
-  eligibleTitles: [],
-  milestoneByTrack: MilestoneMap,
-  currentTitle: string,
-  setTitleFn: (string) => void
-}
-
-class TitleSelector extends React.Component<Props> {
-  render() {
+class TitleSelector extends React.Component {
+  render () {
     return <select value={this.props.currentTitle} onChange={e => this.props.setTitleFn(e.target.value)}>
       <style jsx>{`
         select {
@@ -28,6 +19,13 @@ class TitleSelector extends React.Component<Props> {
       ))}
     </select>
   }
+}
+
+TitleSelector.propTypes = {
+  eligibleTitles: PropTypes.array,
+  milestoneByTrack: PropTypes.object,
+  currentTitle: PropTypes.string,
+  setTitleFn: PropTypes.func
 }
 
 export default TitleSelector

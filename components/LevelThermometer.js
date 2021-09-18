@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const margins = {
   top: 30,
@@ -8,31 +9,23 @@ const margins = {
   left: 10
 }
 const height = 150
-const width = 550;
+const width = 550
 
-type Props = {
-  categoryPointsFromMilestoneMap: [],
-  categoryColorScale: () => {},
-  milestoneByTrack: {},
-  pointsToLevels: {},
-  maxLevel: 135
-}
+class LevelThermometer extends React.Component {
+  // pointScale: any
+  // topAxisFn: any
+  // bottomAxisFn: any
+  // topAxis: *
+  // bottomAxis: *
 
-class LevelThermometer extends React.Component<Props> {
-  pointScale: any
-  topAxisFn: any
-  bottomAxisFn: any
-  topAxis: *
-  bottomAxis: *
-
-  constructor(props: *) {
+  constructor (props) {
     super(props)
-    
+
     const { pointsToLevels } = props
 
     this.pointScale = d3.scaleLinear()
       .domain([0, props.maxLevel])
-      .rangeRound([0, width - margins.left - margins.right]);
+      .rangeRound([0, width - margins.left - margins.right])
 
     this.topAxisFn = d3.axisTop()
       .scale(this.pointScale)
@@ -44,37 +37,38 @@ class LevelThermometer extends React.Component<Props> {
       .tickValues(Object.keys(pointsToLevels))
   }
 
-  componentDidMount() {
+  componentDidMount () {
     d3.select(this.topAxis).call(this.topAxisFn)
       .selectAll('text')
-      .attr("y", 0)
-      .attr("x", -25)
-      .attr("transform", "rotate(90)")
-      .attr("dy", ".35em")
+      .attr('y', 0)
+      .attr('x', -25)
+      .attr('transform', 'rotate(90)')
+      .attr('dy', '.35em')
       .style('font-size', '12px')
       .style('text-anchor', 'start')
     d3.select(this.bottomAxis).call(this.bottomAxisFn)
       .selectAll('text')
-      .attr("y", 0)
-      .attr("x", 10)
-      .attr("transform", "rotate(90)")
-      .attr("dy", ".35em")
+      .attr('y', 0)
+      .attr('x', 10)
+      .attr('transform', 'rotate(90)')
+      .attr('dy', '.35em')
       .style('font-size', '12px')
       .style('text-anchor', 'start')
   }
 
-  rightRoundedRect(x: *, y: *, width: *, height: *, radius: *) {
-    return "M" + x + "," + y
-         + "h" + (width - radius)
-         + "a" + radius + "," + radius + " 0 0 1 " + radius + "," + radius
-         + "v" + (height - 2 * radius)
-         + "a" + radius + "," + radius + " 0 0 1 " + -radius + "," + radius
-         + "h" + (radius - width)
-         + "z";
+  rightRoundedRect (x, y, width, height, radius) {
+    return 'M' + x + ',' + y +
+         'h' + (width - radius) +
+         'a' + radius + ',' + radius + ' 0 0 1 ' + radius + ',' + radius +
+         'v' + (height - 2 * radius) +
+         'a' + radius + ',' + radius + ' 0 0 1 ' + -radius + ',' + radius +
+         'h' + (radius - width) +
+         'z'
   }
-  render() {
+
+  render () {
     const { categoryColorScale } = this.props
-    let categoryPoints = this.props.categoryPointsFromMilestoneMap
+    const categoryPoints = this.props.categoryPointsFromMilestoneMap
     let lastCategoryIndex = 0
     categoryPoints.forEach((categoryPoint, i) => {
       if (categoryPoint.points) lastCategoryIndex = i
@@ -97,26 +91,26 @@ class LevelThermometer extends React.Component<Props> {
               const x = this.pointScale(cumulativePoints)
               const width = this.pointScale(cumulativePoints + categoryPoint.points) - x
               cumulativePoints += categoryPoint.points
-              return (i != lastCategoryIndex ?
-                <rect
+              return (i !== lastCategoryIndex
+                ? <rect
                     key={categoryPoint.categoryId}
                     x={x}
                     y={0}
                     width={width}
                     height={height - margins.top - margins.bottom}
-                    style={{fill: categoryColorScale(categoryPoint.categoryId), borderRight: "1px solid #000"}}
-                    /> :
-                <path
+                    style={{ fill: categoryColorScale(categoryPoint.categoryId), borderRight: '1px solid #000' }}
+                    />
+                : <path
                     key={categoryPoint.categoryId}
                     d={this.rightRoundedRect(x, 0, width, height - margins.top - margins.bottom, 3)}
-                    style={{fill: categoryColorScale(categoryPoint.categoryId)}}
+                    style={{ fill: categoryColorScale(categoryPoint.categoryId) }}
                     />
               )
             })}
-            <g ref={ref => this.topAxis = ref} className="top-axis"
-                transform={`translate(0, -2)`}
+            <g ref={ref => { this.topAxis = ref }} className="top-axis"
+                transform={'translate(0, -2)'}
                 />
-            <g ref={ref => this.bottomAxis = ref} className="bottom-axis"
+            <g ref={ref => { this.bottomAxis = ref }} className="bottom-axis"
                 transform={`translate(0,${height - margins.top - margins.bottom + 1})`}
                 />
           </g>
@@ -124,6 +118,14 @@ class LevelThermometer extends React.Component<Props> {
       </figure>
     )
   }
+}
+
+LevelThermometer.propTypes = {
+  categoryPointsFromMilestoneMap: PropTypes.array,
+  categoryColorScale: PropTypes.func,
+  milestoneByTrack: PropTypes.object,
+  pointsToLevels: PropTypes.object,
+  maxLevel: PropTypes.number
 }
 
 export default LevelThermometer

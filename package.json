@@ -16,7 +16,9 @@
     "dev": "next",
     "export": "next build && next export",
     "flow": "flow",
-    "lint": "eslint ."
+    "lint": "yarn run lint-javascript && yarn run lint-json",
+    "lint-javascript": "eslint .",
+    "lint-json": "jsonlint static/**/*.json --pretty-print --in-place"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.25.2",
-    "flow-bin": "^0.57.2"
+    "flow-bin": "^0.57.2",
+    "jsonlint": "^1.6.3"
   }
 }

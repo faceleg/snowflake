@@ -1,15 +1,15 @@
 {
     "OWNERSHIP":{
-        "location":"/static/tracks/ownership.json"
+        "location":"/static/tracks/mandatory/ownership.json"
     },
     "CLOUD":{
-        "location":"/static/tracks/cloud.json"
+        "location":"/static/tracks/mandatory/cloud.json"
     },
     "EXTREME":{
-        "location":"/static/tracks/extreme.json"
+        "location":"/static/tracks/mandatory/extreme.json"
     },
     
     "PLATFORM_ENGINEERING":{
-        "location":"/static/tracks/platform-engineering.json"
+        "location":"/static/tracks/platform-engineering/platform-engineering.json"
     }
 }
