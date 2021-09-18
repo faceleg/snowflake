@@ -11,7 +11,7 @@ import TitleSelector from '../components/TitleSelector'
 
 import { hashToState, stateToHash } from '../functions/hash'
 import { getTrackIds, getEligibleTitles, milestoneByTrack, getTotalPointsFromMilestoneMap, getCategoryPointsFromMilestoneMap, getCategoryColorScale } from '../functions/track'
-import { titles, milestones, milestoneToPoints } from '../constants'
+import { milestones, milestoneToPoints } from '../constants'
 
 export const emptyState = (tracks) => {
   return {
@@ -26,7 +26,12 @@ export const emptyState = (tracks) => {
   }
 }
 
-type Props = {}
+type Props = {
+  titles: [],
+  tracks: {},
+  maxLevel: 135,
+  pointsToLevels: {}
+}
 
 class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
   constructor(props: Props) {
@@ -46,10 +51,14 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
   }
 
   render() {
-    const { tracks } = this.props
+    const { titles, tracks, pointsToLevels } = this.props
 
     if (!tracks) {
       throw new Error('props.tracks is not defined');
+    }
+
+    if (!titles) {
+      throw new Error('props.titles is not defined');
     }
 
     return (
@@ -97,17 +106,19 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
                   placeholder="Name"
                   />
               <TitleSelector
-                  eligibleTitles={getEligibleTitles(this.state.milestoneByTrack, tracks)}
+                  eligibleTitles={getEligibleTitles(this.state.milestoneByTrack, tracks, this.props.titles)}
                   milestoneByTrack={this.state.milestoneByTrack}
                   currentTitle={this.state.title}
                   setTitleFn={(title) => this.setTitle(title)} />
             </form>
             <PointSummaries 
-            totalPointsFromMilestoneMap={getTotalPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
+              pointsToLevels={pointsToLevels}
+              totalPointsFromMilestoneMap={getTotalPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
               trackids={getTrackIds(tracks)}
               milestoneByTrack={this.state.milestoneByTrack} 
             />
             <LevelThermometer 
+              pointsToLevels={pointsToLevels}
               categoryPointsFromMilestoneMap={getCategoryPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
               categoryColorScale={getCategoryColorScale(tracks)}
               milestoneByTrack={this.state.milestoneByTrack} 
@@ -158,7 +169,7 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
     const milestoneByTrack = this.state.milestoneByTrack
     milestoneByTrack[trackId] = milestone
 
-    const titles = getEligibleTitles(milestoneByTrack, this.props.tracks)
+    const titles = getEligibleTitles(milestoneByTrack, this.props.tracks, this.props.titles)
     const title = titles.indexOf(this.state.title) === -1 ? titles[0] : this.state.title
 
     this.setState({ milestoneByTrack, focusedTrackId: trackId, title })

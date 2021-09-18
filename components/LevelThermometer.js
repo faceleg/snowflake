@@ -1,7 +1,4 @@
-// @flow
-
 import * as d3 from 'd3'
-import { pointsToLevels, categoryIds } from '../constants'
 import React from 'react'
 import type { MilestoneMap } from '../constants'
 
@@ -17,7 +14,8 @@ const width = 550
 type Props = {
   categoryPointsFromMilestoneMap: [],
   categoryColorScale: () => {},
-  milestoneByTrack: MilestoneMap,
+  milestoneByTrack: {},
+  pointsToLevels: {}
 }
 
 class LevelThermometer extends React.Component<Props> {
@@ -29,6 +27,8 @@ class LevelThermometer extends React.Component<Props> {
 
   constructor(props: *) {
     super(props)
+    
+    const { pointsToLevels } = props
 
     this.pointScale = d3.scaleLinear()
       .domain([0, 135])

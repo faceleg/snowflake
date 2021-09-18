@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 
-import { milestoneToPoints, titles } from '../constants'
+import { milestoneToPoints } from '../constants'
 
 export const getTrackIds = (tracks) => {
   if (!tracks) throw new Error('Tracks is empty')
@@ -27,8 +27,9 @@ export const getCategoryColorScale = (tracks) => d3.scaleOrdinal()
         '#e54552'
       ])
 
-export const getEligibleTitles = (milestoneMap: MilestoneMap, tracks): string[] => {
+export const getEligibleTitles = (milestoneMap: MilestoneMap, tracks, titles): string[] => {
   if (!tracks) throw new Error('Tracks is empty')
+  if (!titles) throw new Error('Titles is empty')
   const totalPoints = getTotalPointsFromMilestoneMap(milestoneMap, tracks)
   return titles.filter(title => (title.minPoints === undefined || totalPoints >= title.minPoints)
                               && (title.maxPoints === undefined || totalPoints <= title.maxPoints))
