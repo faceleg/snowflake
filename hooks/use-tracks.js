@@ -49,7 +49,6 @@ export const useTracks = (role) => {
     setError(null)
     return getTracks(role)
       .then((response) => {
-        console.log('response', response)
         setTracks(response.tracks)
         setTitles(response.titles)
         setMaxLevel(response.maxLevel)
