@@ -1,0 +1,15 @@
+{
+    "OWNERSHIP":{
+        "location":"/static/tracks/ownership.json"
+    },
+    "CLOUD":{
+        "location":"/static/tracks/cloud.json"
+    },
+    "EXTREME":{
+        "location":"/static/tracks/extreme.json"
+    },
+    
+    "SOFTWARE_ENGINEERING":{
+        "location":"/static/tracks/software-engineering.json"
+    }
+}

@@ -1,68 +1,19 @@
-import { useReducer, useState, useEffect, useCallback } from 'react';
-import useSWR from 'swr'
-import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useTracks } from '../hooks/use-tracks'
 
-import SnowflakeApp from '../components/SnowflakeApp'
-
-  async function getTracks() {
-    const response = await axios('/static/tracks.json')
-
-    if (!response.data) {
-        throw new Error('No data')
-    }
-
-    const tracksLocations = response.data
-    const tracksData = await Promise.all(Object.keys(tracksLocations).map((trackId) => {
-        return axios(tracksLocations[trackId].location)
-    }))
-
-    const tracks = Object.keys(tracksLocations).reduce((accumulator, trackId, index) => {
-        accumulator[trackId] = tracksData[index].data[trackId]
-        return accumulator
-    }, {})
-
-    return tracks;
-  }
-
-const useTracks = (immediate = true) => {
-    const [tracks, setTracks] = useState(null);
-    const [error, setError] = useState(null);
-    // The execute function wraps asyncFunction and
-    // handles setting state for pending, value, and error.
-    // useCallback ensures the below useEffect is not called
-    // on every render, but only if asyncFunction changes.
-    const execute = useCallback(() => {
-      setTracks(null);
-      setError(null);
-      return getTracks()
-        .then((response) => {
-        console.log({response})
-          setTracks(response);
-        })
-        .catch((error) => {
-          setError(error);
-        });
-    }, [getTracks]);
-    // Call execute if we want to fire it right away.
-    // Otherwise execute can be called later, such as
-    // in an onClick handler.
-    useEffect(() => {
-      if (immediate) {
-        execute();
-      }
-    }, [execute, immediate]);
-    return { execute, tracks, error };
-  };
-
-const Page = () => {
-    const { error, tracks } = useTracks()
-
-    console.log('Page', { error, tracks })
-
-    if (error) return <div>failed to load</div>
-    if (!tracks) return <div>loading...</div>
-
-    return <div><SnowflakeApp tracks={tracks} /></div>
+const Role = () => {
+  return (
+    <div>
+    <ul>
+      <li>
+        <a href="/role/platform-engineer">Platform Engineer</a>
+      </li>
+      <li>
+        <a href="/role/software-engineer">Software Engineer</a>
+      </li>
+    </ul>
+    </div>
+  )
 }
-      
-export default Page
+
+export default Role
