@@ -14,10 +14,13 @@
   "scripts": {
     "dev": "next",
     "export": "next build && next export",
-    "flow": "flow"
+    "flow": "flow",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
     "flow-bin": "^0.57.2"
   }
 }
