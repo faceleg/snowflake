@@ -15,7 +15,8 @@ type Props = {
   categoryPointsFromMilestoneMap: [],
   categoryColorScale: () => {},
   milestoneByTrack: {},
-  pointsToLevels: {}
+  pointsToLevels: {},
+  maxLevel: 135
 }
 
 class LevelThermometer extends React.Component<Props> {
@@ -31,7 +32,7 @@ class LevelThermometer extends React.Component<Props> {
     const { pointsToLevels } = props
 
     this.pointScale = d3.scaleLinear()
-      .domain([0, 135])
+      .domain([0, props.maxLevel])
       .rangeRound([0, width - margins.left - margins.right]);
 
     this.topAxisFn = d3.axisTop()

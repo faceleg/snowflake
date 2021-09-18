@@ -118,6 +118,7 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
               milestoneByTrack={this.state.milestoneByTrack} 
             />
             <LevelThermometer 
+      maxLevel={this.props.maxLevel}
               pointsToLevels={pointsToLevels}
               categoryPointsFromMilestoneMap={getCategoryPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
               categoryColorScale={getCategoryColorScale(tracks)}
