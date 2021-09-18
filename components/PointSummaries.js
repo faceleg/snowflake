@@ -87,7 +87,7 @@ PointSummaries.propTypes = {
 
   totalPointsFromMilestoneMap: PropTypes.number,
   milestoneByTrack: PropTypes.object,
-  pointsToLevels: PropTypes.func
+  pointsToLevels: PropTypes.object
 }
 
 export default PointSummaries

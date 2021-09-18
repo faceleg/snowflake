@@ -94,7 +94,7 @@ class NightingaleChart extends React.Component {
 }
 
 NightingaleChart.propTypes = {
-  categoryColorScale: PropTypes.array,
+  categoryColorScale: PropTypes.func,
   tracks: PropTypes.object,
   trackIds: PropTypes.array,
   milestoneByTrack: PropTypes.object,

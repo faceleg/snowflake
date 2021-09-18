@@ -10,6 +10,6 @@
     },
    
     "SOFTWARE_ENGINEERING":{
-        "location":"/static/tracks/software-engineering.json"
+        "location":"/static/tracks/software-engineering/software-engineering.json"
     }
 }

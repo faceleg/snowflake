@@ -198,10 +198,10 @@ class SnowflakeApp extends React.Component {
 }
 
 SnowflakeApp.propTypes = {
-  titles: [PropTypes.string],
-  tracks: {},
-  maxLevel: 135,
-  pointsToLevels: {}
+  titles: PropTypes.array,
+  tracks: PropTypes.object,
+  maxLevel: PropTypes.number,
+  pointsToLevels: PropTypes.object
 }
 
 export default SnowflakeApp
