@@ -5,10 +5,12 @@
   "repository": "https://github.com/Medium/eng-growth",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.4",
     "d3": "^4.11.0",
     "next": "^9.0.7",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "swr": "^1.0.1"
   },
   "scripts": {
     "dev": "next",
