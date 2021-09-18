@@ -1,0 +1,52 @@
+{
+    "CLOUD":{
+        "displayName":"Cloud",
+        "category":"MANDATORY",
+        "description":"Understands the relevance of Cloud",
+        "milestones":[
+            {
+                "summary":"Understands basic components of the appropriate cloud provider's toolset and can discuss them competently",
+                "signals":[
+                    "Understands basic components of the appropriate cloud provider's toolset and can discuss them competently"
+                ],
+                "examples":[
+                    ""
+                ]
+            },
+            {
+                "summary":"Deeper understanding of cloud",
+                "signals":[
+                    "Has deep understanding of a good range of the appropriate cloud provider's toolset and can compose solutions effectively"
+                ],
+                "examples":[
+                ]
+            },
+            {
+                "summary":"Basic cloud architecture",
+                "signals":[
+                    "Has architected and implemented cloud aspects of additions to existing products"
+                ],
+                "examples":[
+                   
+                ]
+            },
+            {
+                "summary":"Developing architecture",
+                "signals":[
+                    "Has participated in architecting entirely new cloud solutions"
+                ],
+                "examples":[
+                    
+                ]
+            },
+            {
+                "summary":"CLoud guru",
+                "signals":[
+                    "Has a full understanding of the current cloud infrastructure the company."
+                ],
+                "examples":[
+                ]
+            }
+        ]
+    }
+}

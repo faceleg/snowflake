@@ -21,7 +21,6 @@ class Track extends React.Component<Props> {
       return null
     }
 
-    console.log('Track', { tracks })
     const track = this.props.tracks[this.props.trackId]
     const currentMilestoneId = this.props.milestoneByTrack[this.props.trackId]
     const currentMilestone = track.milestones[currentMilestoneId - 1]
@@ -85,12 +84,12 @@ class Track extends React.Component<Props> {
                   <li key={i}>{signal}</li>
                 ))}
               </ul>
-              <h4>Example tasks:</h4>
+              {currentMilestone.examples.length ? (<><h4>Example tasks:</h4>
               <ul>
                 {currentMilestone.examples.map((example, i) => (
                   <li key={i}>{example}</li>
                 ))}
-              </ul>
+              </ul></>) : null}
             </div>
           ) : null}
         </div>

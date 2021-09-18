@@ -1,0 +1,63 @@
+{
+    "OWNERSHIP":{
+        "displayName":"Ownership",
+        "category":"MANDATORY",
+        "description":"Acts like the owner",
+        "milestones":[
+            {
+                "summary":"Participates in every step of feature development, from planning through to production deployment",
+                "signals":[
+                    "Participates in every step of feature development, from planning through to production deployment",
+                    "Monitors production support channels and monitoring to gain an understanding of how relevant application performs in production",
+                    "Communicates progress, identifies blocking issues"
+                ],
+                "examples":[
+                    ""
+                ]
+            },
+            {
+                "summary":"Time management, suggests improvements",
+                "signals":[
+                    "Is generally correct in retrospect when predicting point and time complexity of tasks",
+                    "Suggests improvements to production support strategies and techniques.",
+                    "Works with teams to ensure solutions generally do not need out of hours support.",
+                    "Capable of providing on-call production support for their application, domain and or technology"
+                ],
+                "examples":[
+                ]
+            },
+            {
+                "summary":"Encourages change, notices issues & works to correct them",
+                "signals":[
+                    "Consistently encourages evolution and perfection of team practice & agile methodologies. ",
+                    "Identifies issues with team workflows and encourages effective discussion around solutions",
+                    "Actively ensures that production support does not unduly interfere with work/life balance for the application/technology team. Champions and implements changes to ensure this.",
+                    "Persistent in the face of roadblocks and removes them efficiently, pulling in others as necessary. Required minimal direction & oversight"
+                ],
+                "examples":[
+                   
+                ]
+            },
+            {
+                "summary":"Models amazing behaviour",
+                "signals":[
+                    "Consistently encourages evolution and perfection of team practice & agile methodologies within the company. ",
+                    "Identifies areas of improvement and works to evangelise better ways of working",
+                    "Increases the capabilities of more junior people.",
+                    "Reduces complexity to get more done with less work"
+                ],
+                "examples":[
+                    
+                ]
+            },
+            {
+                "summary":"N/A",
+                "signals":[
+                    
+                ],
+                "examples":[
+                ]
+            }
+        ]
+    }
+}

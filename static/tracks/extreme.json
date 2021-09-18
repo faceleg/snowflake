@@ -1,0 +1,53 @@
+{
+    "EXTREME":{
+        "displayName":"Extreme Techniques",
+        "category":"MANDATORY",
+        "description":"Understands the relevance of extreme techniques",
+        "milestones":[
+            {
+                "summary":"Understands basic and relevant extreme techniques",
+                "signals":[
+                    "Pairs effectively as the passenger when appropriate.",
+                    "Writes tests as part of initial phase of any work"
+                ],
+                "examples":[
+                    ""
+                ]
+            },
+            {
+                "summary":"Understands basic and relevant extreme techniques",
+                "signals":[
+                    "Pairs effectively as the driver when appropriate"
+                ],
+                "examples":[
+                ]
+            },
+            {
+                "summary":"Extreme evangelist",
+                "signals":[
+                    "Champions XP values within their immediate team and is an example of how to live them - https://www.agilealliance.org/glossary/xp"
+                ],
+                "examples":[
+                   
+                ]
+            },
+            {
+                "summary":"Extreme beyond immediate team",
+                "signals":[
+                    "Champions XP values within the wider company"
+                ],
+                "examples":[
+                    
+                ]
+            },
+            {
+                "summary":"Shining example of extreme respect & practices",
+                "signals":[
+                    "Is seen as an archetypical example of how to approach technical work, with emphasis on communication, courage, respect, feedback and simplicity"
+                ],
+                "examples":[
+                ]
+            }
+        ]
+    }
+}
