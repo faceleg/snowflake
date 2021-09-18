@@ -58,25 +58,27 @@ const emptyState = (): SnowflakeAppState => {
       'EXTREME': 0,
 
       'PLATFORM_ENGINEERING': 0,
+      'SOFTWARE_ENGINEERING': 0,
       
     },
-    focusedTrackId: 'PLATFORM_ENGINEERING'
+    focusedTrackId: 'OWNERSHIP'
   }
 }
 
 const defaultState = (): SnowflakeAppState => {
   return {
-    name: 'Cersei Lannister',
-    title: 'Staff Engineer',
+    name: '<YOUR NAME>',
+    title: '',
     tracks: false,
     milestoneByTrack: {
-      'OWNERSHIP': 2,
+      'OWNERSHIP': 0,
       'CLOUD': 0,
       'EXTREME': 0,
       
-      'PLATFORM_ENGINEERING': 1
+      'PLATFORM_ENGINEERING': 0,
+      'SOFTWARE_ENGINEERING': 0
     },
-    focusedTrackId: 'PLATFORM_ENGINEERING'
+    focusedTrackId: 'OWNERSHIP'
   }
 }
 
