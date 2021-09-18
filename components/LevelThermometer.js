@@ -1,7 +1,7 @@
 // @flow
 
 import * as d3 from 'd3'
-import { pointsToLevels, categoryPointsFromMilestoneMap, categoryColorScale, categoryIds } from '../constants'
+import { pointsToLevels, categoryIds } from '../constants'
 import React from 'react'
 import type { MilestoneMap } from '../constants'
 
@@ -15,6 +15,8 @@ const height = 150
 const width = 550
 
 type Props = {
+  categoryPointsFromMilestoneMap: [],
+  categoryColorScale: () => {},
   milestoneByTrack: MilestoneMap,
 }
 
@@ -71,7 +73,8 @@ class LevelThermometer extends React.Component<Props> {
          + "z";
   }
   render() {
-    let categoryPoints = categoryPointsFromMilestoneMap(this.props.milestoneByTrack)
+    const { categoryColorScale } = this.props
+    let categoryPoints = this.props.categoryPointsFromMilestoneMap
     let lastCategoryIndex = 0
     categoryPoints.forEach((categoryPoint, i) => {
       if (categoryPoint.points) lastCategoryIndex = i

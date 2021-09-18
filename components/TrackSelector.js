@@ -1,10 +1,12 @@
 // @flow
 
 import React from 'react'
-import { trackIds, tracks, categoryColorScale } from '../constants'
 import type { MilestoneMap, TrackId } from '../constants'
 
 type Props = {
+  categoryColorScale: () => {},
+  tracks: {},
+  trackIds: TrackId[],
   milestoneByTrack: MilestoneMap,
   focusedTrackId: TrackId,
   setFocusedTrackIdFn: (TrackId) => void
@@ -12,6 +14,7 @@ type Props = {
 
 class TrackSelector extends React.Component<Props> {
   render() {
+    const { trackIds, tracks, categoryColorScale,  } = this.props
     return (
       <table>
         <style jsx>{`

@@ -1,10 +1,12 @@
 // @flow
 
-import { tracks, milestones, categoryColorScale } from '../constants'
+import { milestones } from '../constants'
 import React from 'react'
 import type { MilestoneMap, TrackId, Milestone } from '../constants'
 
 type Props = {
+  categoryColorScale: () => {},
+  tracks: {},
   milestoneByTrack: MilestoneMap,
   trackId: TrackId,
   handleTrackMilestoneChangeFn: (TrackId, Milestone) => void
@@ -12,7 +14,15 @@ type Props = {
 
 class Track extends React.Component<Props> {
   render() {
-    const track = tracks[this.props.trackId]
+    const { tracks, categoryColorScale } = this.props
+
+    if (!tracks) {
+      console.error('attempting to render without tracks')
+      return null
+    }
+
+    console.log('Track', { tracks })
+    const track = this.props.tracks[this.props.trackId]
     const currentMilestoneId = this.props.milestoneByTrack[this.props.trackId]
     const currentMilestone = track.milestones[currentMilestoneId - 1]
     return (
