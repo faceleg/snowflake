@@ -1,8 +1,8 @@
-import { getTrackIds } from "./track"
+import { getTrackIds } from './track'
 
-const coerceMilestone = (value: number): Milestone => {
+const coerceMilestone = (value) => {
   // HACK I know this is goofy but i'm dealing with flow typing
-  switch(value) {
+  switch (value) {
     case 0: return 0
     case 1: return 1
     case 2: return 2
@@ -26,9 +26,8 @@ export const hashToState = (defaultState, hash, tracks) => {
   return result
 }
 
-export const stateToHash = (state: SnowflakeAppState, tracks) => {
+export const stateToHash = (state, tracks) => {
   if (!state || !state.milestoneByTrack) return null
   const values = getTrackIds(tracks).map(trackId => state.milestoneByTrack[trackId]).concat(encodeURI(state.name), encodeURI(state.title))
   return values.join(',')
 }
-

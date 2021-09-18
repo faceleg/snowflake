@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import { useTracks } from '../../hooks/use-tracks'
 import SnowflakeApp from '../../components/SnowflakeApp'
@@ -20,3 +21,7 @@ const Role = (props) => {
 }
 
 export default Role
+
+Role.propTypes = {
+  role: PropTypes.string
+}

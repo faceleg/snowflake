@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import { useTracks } from '../hooks/use-tracks'
+import React from 'react'
 
 const Role = () => {
   return (

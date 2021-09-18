@@ -14,38 +14,37 @@ export const getCategoryIds = (tracks) => {
   }, new Set())
 }
 
-export const getTotalPointsFromMilestoneMap = (milestoneMap: MilestoneMap, tracks): number =>
+export const getTotalPointsFromMilestoneMap = (milestoneMap, tracks) =>
   getTrackIds(tracks).map(trackId => milestoneToPoints(milestoneMap[trackId]))
     .reduce((sum, addend) => (sum + addend), 0)
 
 export const getCategoryColorScale = (tracks) => d3.scaleOrdinal()
-      .domain(getCategoryIds(tracks))
-      .range([
-        '#00abc2', 
-        '#428af6', 
-        '#e1439f', 
-        '#e54552'
-      ])
+  .domain(getCategoryIds(tracks))
+  .range([
+    '#00abc2',
+    '#428af6',
+    '#e1439f',
+    '#e54552'
+  ])
 
-export const getEligibleTitles = (milestoneMap: MilestoneMap, tracks, titles): string[] => {
+export const getEligibleTitles = (milestoneMap, tracks, titles) => {
   if (!tracks) throw new Error('Tracks is empty')
   if (!titles) throw new Error('Titles is empty')
   const totalPoints = getTotalPointsFromMilestoneMap(milestoneMap, tracks)
-  return titles.filter(title => (title.minPoints === undefined || totalPoints >= title.minPoints)
-                              && (title.maxPoints === undefined || totalPoints <= title.maxPoints))
+  return titles.filter(title => (title.minPoints === undefined || totalPoints >= title.minPoints) &&
+                              (title.maxPoints === undefined || totalPoints <= title.maxPoints))
     .map(title => title.label)
 }
 
-export const getCategoryPointsFromMilestoneMap = (milestoneMap: MilestoneMap, tracks) => {
-  let pointsByCategory = new Map()
+export const getCategoryPointsFromMilestoneMap = (milestoneMap, tracks) => {
+  const pointsByCategory = new Map()
   getTrackIds(tracks).forEach((trackId) => {
     const milestone = milestoneMap[trackId]
     const categoryId = tracks[trackId].category
-    let currentPoints = pointsByCategory.get(categoryId) || 0
+    const currentPoints = pointsByCategory.get(categoryId) || 0
     pointsByCategory.set(categoryId, currentPoints + milestoneToPoints(milestone))
   })
   return Array.from(getCategoryIds(tracks).values()).map(categoryId => {
-    const points = pointsByCategory.get(categoryId)
     return { categoryId, points: pointsByCategory.get(categoryId) || 0 }
   })
 }

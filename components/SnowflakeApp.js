@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import TrackSelector from '../components/TrackSelector'
 import NightingaleChart from '../components/NightingaleChart'
@@ -10,8 +11,7 @@ import PointSummaries from '../components/PointSummaries'
 import TitleSelector from '../components/TitleSelector'
 
 import { hashToState, stateToHash } from '../functions/hash'
-import { getTrackIds, getEligibleTitles, milestoneByTrack, getTotalPointsFromMilestoneMap, getCategoryPointsFromMilestoneMap, getCategoryColorScale } from '../functions/track'
-import { milestones, milestoneToPoints } from '../constants'
+import { getTrackIds, getEligibleTitles, getTotalPointsFromMilestoneMap, getCategoryPointsFromMilestoneMap, getCategoryColorScale } from '../functions/track'
 
 export const emptyState = (tracks) => {
   return {
@@ -26,39 +26,32 @@ export const emptyState = (tracks) => {
   }
 }
 
-type Props = {
-  titles: [],
-  tracks: {},
-  maxLevel: 135,
-  pointsToLevels: {}
-}
-
-class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
-  constructor(props: Props) {
+class SnowflakeApp extends React.Component {
+  constructor (props) {
     super(props)
     this.state = emptyState(props.tracks)
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     const hash = stateToHash(this.state, this.props.tracks)
     if (hash) {
       window.location.replace(`#${hash}`)
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState(hashToState(emptyState(this.props.tracks), window.location.hash, this.props.tracks) || emptyState(this.props.tracks))
   }
 
-  render() {
+  render () {
     const { titles, tracks, pointsToLevels } = this.props
 
     if (!tracks) {
-      throw new Error('props.tracks is not defined');
+      throw new Error('props.tracks is not defined')
     }
 
     if (!titles) {
-      throw new Error('props.titles is not defined');
+      throw new Error('props.titles is not defined')
     }
 
     return (
@@ -90,19 +83,19 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
             text-decoration: none;
           }
         `}</style>
-        <div style={{margin: '19px auto 0', width: 142}}>
-          <a href="https://medium.com/" target="_blank">
+        <div style={{ margin: '19px auto 0', width: 142 }}>
+          <a href="https://medium.com/" target="_blank" rel="noreferrer">
             <Wordmark />
           </a>
         </div>
-        <div style={{display: 'flex'}}>
-          <div style={{flex: 1}}>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 1 }}>
             <form>
               <input
                   type="text"
                   className="name-input"
                   value={this.state.name}
-                  onChange={e => this.setState({name: e.target.value})}
+                  onChange={e => this.setState({ name: e.target.value })}
                   placeholder="Name"
                   />
               <TitleSelector
@@ -111,21 +104,21 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
                   currentTitle={this.state.title}
                   setTitleFn={(title) => this.setTitle(title)} />
             </form>
-            <PointSummaries 
+            <PointSummaries
               pointsToLevels={pointsToLevels}
               totalPointsFromMilestoneMap={getTotalPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
               trackids={getTrackIds(tracks)}
-              milestoneByTrack={this.state.milestoneByTrack} 
+              milestoneByTrack={this.state.milestoneByTrack}
             />
-            <LevelThermometer 
+            <LevelThermometer
       maxLevel={this.props.maxLevel}
               pointsToLevels={pointsToLevels}
               categoryPointsFromMilestoneMap={getCategoryPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
               categoryColorScale={getCategoryColorScale(tracks)}
-              milestoneByTrack={this.state.milestoneByTrack} 
+              milestoneByTrack={this.state.milestoneByTrack}
             />
           </div>
-          <div style={{flex: 0}}>
+          <div style={{ flex: 0 }}>
             <NightingaleChart
                 categoryColorScale={getCategoryColorScale(tracks)}
                 tracks={tracks}
@@ -153,20 +146,20 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
             milestoneByTrack={this.state.milestoneByTrack}
             trackId={this.state.focusedTrackId}
             handleTrackMilestoneChangeFn={(track, milestone) => this.handleTrackMilestoneChange(track, milestone)} />
-        <div style={{display: 'flex', paddingBottom: '20px'}}>
-          <div style={{flex: 1}}>
-            Made with ❤️ by <a href="https://medium.engineering" target="_blank">Medium Eng</a>.
-            Learn about the <a href="https://medium.com/s/engineering-growth-framework" target="_blank">this version of our growth framework</a>
-            {' '}and <a href="https://medium.engineering/engineering-growth-at-medium-4935b3234d25" target="_blank">what we do currently</a>.
-            Get the <a href="https://github.com/Medium/snowflake" target="_blank">source code</a>.
-            Read the <a href="https://medium.com/p/85e078bc15b7" target="_blank">terms of service</a>.
+        <div style={{ display: 'flex', paddingBottom: '20px' }}>
+          <div style={{ flex: 1 }}>
+            Made with ❤️ by <a href="https://medium.engineering" target="_blank" rel="noreferrer">Medium Eng</a>.
+            Learn about the <a href="https://medium.com/s/engineering-growth-framework" target="_blank" rel="noreferrer">this version of our growth framework</a>
+            {' '}and <a href="https://medium.engineering/engineering-growth-at-medium-4935b3234d25" target="_blank" rel="noreferrer">what we do currently</a>.
+            Get the <a href="https://github.com/Medium/snowflake" target="_blank" rel="noreferrer">source code</a>.
+            Read the <a href="https://medium.com/p/85e078bc15b7" target="_blank" rel="noreferrer">terms of service</a>.
           </div>
         </div>
       </main>
     )
   }
 
-  handleTrackMilestoneChange(trackId: TrackId, milestone: Milestone) {
+  handleTrackMilestoneChange (trackId, milestone) {
     const milestoneByTrack = this.state.milestoneByTrack
     milestoneByTrack[trackId] = milestone
 
@@ -176,32 +169,39 @@ class SnowflakeApp extends React.Component<Props, SnowflakeAppState> {
     this.setState({ milestoneByTrack, focusedTrackId: trackId, title })
   }
 
-  shiftFocusedTrack(delta: number) {
+  shiftFocusedTrack (delta) {
     let index = getTrackIds(this.props.tracks).indexOf(this.state.focusedTrackId)
     index = (index + delta + getTrackIds(this.props.tracks).length) % getTrackIds(this.props.tracks).length
     const focusedTrackId = getTrackIds(this.props.tracks)[index]
     this.setState({ focusedTrackId })
   }
 
-  setFocusedTrackId(trackId: TrackId) {
-    let index = getTrackIds(this.props.tracks).indexOf(trackId)
+  setFocusedTrackId (trackId) {
+    const index = getTrackIds(this.props.tracks).indexOf(trackId)
     const focusedTrackId = getTrackIds(this.props.tracks)[index]
     this.setState({ focusedTrackId })
   }
 
-  shiftFocusedTrackMilestoneByDelta(delta: number) {
-    let prevMilestone = this.state.milestoneByTrack[this.state.focusedTrackId]
+  shiftFocusedTrackMilestoneByDelta (delta) {
+    const prevMilestone = this.state.milestoneByTrack[this.state.focusedTrackId]
     let milestone = prevMilestone + delta
     if (milestone < 0) milestone = 0
     if (milestone > 5) milestone = 5
-    this.handleTrackMilestoneChange(this.state.focusedTrackId, ((milestone: any): Milestone))
+    this.handleTrackMilestoneChange(this.state.focusedTrackId, milestone)
   }
 
-  setTitle(title: string) {
-    let titles = eligibleTitles(this.state.milestoneByTrack)
-    title = titles.indexOf(title) == -1 ? titles[0] : title
+  setTitle (title) {
+    const titles = getEligibleTitles(this.state.milestoneByTrack)
+    title = titles.indexOf(title) === -1 ? titles[0] : title
     this.setState({ title })
   }
+}
+
+SnowflakeApp.propTypes = {
+  titles: [PropTypes.string],
+  tracks: {},
+  maxLevel: 135,
+  pointsToLevels: {}
 }
 
 export default SnowflakeApp

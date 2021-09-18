@@ -1,19 +1,10 @@
-// @flow
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import { milestones } from '../constants'
-import React from 'react'
-import type { MilestoneMap, TrackId, Milestone } from '../constants'
 
-type Props = {
-  categoryColorScale: () => {},
-  tracks: {},
-  milestoneByTrack: MilestoneMap,
-  trackId: TrackId,
-  handleTrackMilestoneChangeFn: (TrackId, Milestone) => void
-}
-
-class Track extends React.Component<Props> {
-  render() {
+class Track extends React.Component {
+  render () {
     const { tracks, categoryColorScale } = this.props
 
     if (!tracks) {
@@ -59,15 +50,15 @@ class Track extends React.Component<Props> {
         `}</style>
         <h2>{track.displayName}</h2>
         <p className="track-description">{track.description}</p>
-        <div style={{display: 'flex'}}>
-          <table style={{flex: 0, marginRight: 50}}>
+        <div style={{ display: 'flex' }}>
+          <table style={{ flex: 0, marginRight: 50 }}>
             <tbody>
               {milestones.slice().reverse().map((milestone) => {
                 const isMet = milestone <= currentMilestoneId
                 return (
                   <tr key={milestone}>
                     <td onClick={() => this.props.handleTrackMilestoneChangeFn(this.props.trackId, milestone)}
-                        style={{border: `4px solid ${milestone === currentMilestoneId ? '#000' : isMet ? categoryColorScale(track.category) : '#eee'}`, background: isMet ? categoryColorScale(track.category) : undefined}}>
+                        style={{ border: `4px solid ${milestone === currentMilestoneId ? '#000' : isMet ? categoryColorScale(track.category) : '#eee'}`, background: isMet ? categoryColorScale(track.category) : undefined }}>
                       {milestone}
                     </td>
                   </tr>
@@ -75,8 +66,9 @@ class Track extends React.Component<Props> {
               })}
             </tbody>
           </table>
-          {currentMilestone ? (
-            <div style={{flex: 1}}>
+          {currentMilestone
+            ? (
+            <div style={{ flex: 1 }}>
               <h3>{currentMilestone.summary}</h3>
               <h4>Example behaviors:</h4>
               <ul>
@@ -84,18 +76,34 @@ class Track extends React.Component<Props> {
                   <li key={i}>{signal}</li>
                 ))}
               </ul>
-              {currentMilestone.examples.length ? (<><h4>Example tasks:</h4>
+              {currentMilestone.examples.length
+                ? (<><h4>Example tasks:</h4>
               <ul>
                 {currentMilestone.examples.map((example, i) => (
                   <li key={i}>{example}</li>
                 ))}
-              </ul></>) : null}
+              </ul></>)
+                : null}
             </div>
-          ) : null}
+              )
+            : null}
         </div>
       </div>
     )
   }
+}
+
+Track.propTypes = {
+  titles: PropTypes.object,
+  tracks: PropTypes.object,
+  maxLevel: PropTypes.number,
+  pointsToLevels: PropTypes.object,
+  trackId: PropTypes.string,
+  categoryColorScale: PropTypes.func,
+  milestoneByTrack: PropTypes.object,
+  focusedTrackId: PropTypes.string,
+  setFocusedTrackIdFn: PropTypes.func,
+  handleTrackMilestoneChangeFn: PropTypes.func
 }
 
 export default Track
