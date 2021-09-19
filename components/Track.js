@@ -48,8 +48,12 @@ class Track extends React.Component {
             line-height: 1.5em;
           }
         `}</style>
-        <h2>{track.displayName}</h2>
-        <p className="track-description">{track.description}</p>
+        <div>
+          <h2>{track.displayName}
+          <button style={{ marginLeft: 20 }}>Show level details</button>
+        </h2>
+          <p className="track-description">{track.description}</p>
+        </div>
         <div style={{ display: 'flex' }}>
           <table style={{ flex: 0, marginRight: 50 }}>
             <tbody>
