@@ -32,7 +32,7 @@ Each role exists as a root JSON file in `static/roles`. The files needed here ar
  * `<role-name>.json`
  * `<role-name>-titles.json`
 
-### role-name.json
+### `<role-name>.json`
 
 This it the main file and describes which "tracks" make up this role. It is *strongly* recommended that you include the
 same set of "mandatory" components as most other roles - these are skills, behaviours and customer understanding we
@@ -69,7 +69,7 @@ pertinent to only Platform Engineering in the   `platform-engineering` folder, t
 (Quality, Platform, etc) in their own folder, etc. This aids us in reviewing changes as it helps to know which people
 to pull in to review.
 
-### <role-name>-titles.json
+### `<role-name>-titles.json`
 
 This file describes how the tool should tie tracks to role titles in terms of points and the number required to
 progress. It also describes the maximum possible points for this role.
