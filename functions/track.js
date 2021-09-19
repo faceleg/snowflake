@@ -21,10 +21,13 @@ export const getTotalPointsFromMilestoneMap = (milestoneMap, tracks) =>
 export const getCategoryColorScale = (tracks) => d3.scaleOrdinal()
   .domain(getCategoryIds(tracks))
   .range([
-    '#00abc2',
-    '#428af6',
-    '#e1439f',
-    '#e54552'
+    '#DA1710',
+    '#FF3DDB',
+    '#002F6C',
+    '#7627C',
+    '#1F1C4F',
+    '#E0BAF2',
+    '#FFD9F7'
   ])
 
 export const getEligibleTitles = (milestoneMap, tracks, titles) => {
