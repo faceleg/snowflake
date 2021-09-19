@@ -18,7 +18,7 @@
     "export": "next build && next export",
     "flow": "flow",
     "lint": "yarn run lint-javascript && yarn run lint-json",
-    "lint-javascript": "eslint .",
+    "lint-javascript": "eslint . --fix",
     "lint-json": "jsonlint static/**/*.json --pretty-print --in-place"
   },
   "devDependencies": {
