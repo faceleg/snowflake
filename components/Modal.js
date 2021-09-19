@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
-const Modal = ({ show, onClose, children, title }) => {
+const Modal = ({ show, onClose, children }) => {
   const [isBrowser, setIsBrowser] = useState(false)
 
   useEffect(() => {
@@ -23,7 +23,6 @@ const Modal = ({ show, onClose, children, title }) => {
             x
           </a>
         </StyledModalHeader>
-        {title && <StyledModalTitle>{title}</StyledModalTitle>}
         <StyledModalBody>{children}</StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>

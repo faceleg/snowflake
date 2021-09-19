@@ -6,7 +6,7 @@ import { milestones } from '../constants'
 
 const Track = (props) => {
   const [showModal, setShowModal] = useState(false)
-  const { tracks, categoryColorScale } = props
+  const { categoryColorScale } = props
 
   const track = props.tracks[props.trackId]
   const currentMilestoneId = props.milestoneByTrack[props.trackId]
