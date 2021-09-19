@@ -45,6 +45,7 @@ class SnowflakeApp extends React.Component {
 
   render () {
     const { titles, tracks, pointsToLevels } = this.props
+    const categoryColorScale = getCategoryColorScale(tracks)
 
     if (!tracks) {
       throw new Error('props.tracks is not defined')
@@ -114,13 +115,13 @@ class SnowflakeApp extends React.Component {
       maxLevel={this.props.maxLevel}
               pointsToLevels={pointsToLevels}
               categoryPointsFromMilestoneMap={getCategoryPointsFromMilestoneMap(this.state.milestoneByTrack, tracks)}
-              categoryColorScale={getCategoryColorScale(tracks)}
+              categoryColorScale={categoryColorScale}
               milestoneByTrack={this.state.milestoneByTrack}
             />
           </div>
           <div style={{ flex: 0 }}>
             <NightingaleChart
-                categoryColorScale={getCategoryColorScale(tracks)}
+                categoryColorScale={categoryColorScale}
                 tracks={tracks}
                 trackIds={getTrackIds(tracks)}
                 milestoneByTrack={this.state.milestoneByTrack}
@@ -129,7 +130,7 @@ class SnowflakeApp extends React.Component {
           </div>
         </div>
         <TrackSelector
-            categoryColorScale={getCategoryColorScale(tracks)}
+            categoryColorScale={categoryColorScale}
             tracks={tracks}
             trackIds={getTrackIds(tracks)}
             milestoneByTrack={this.state.milestoneByTrack}
@@ -141,7 +142,7 @@ class SnowflakeApp extends React.Component {
             increaseFocusedMilestoneFn={this.shiftFocusedTrackMilestoneByDelta.bind(this, 1)}
             decreaseFocusedMilestoneFn={this.shiftFocusedTrackMilestoneByDelta.bind(this, -1)} />
         <Track
-            categoryColorScale={getCategoryColorScale(tracks)}
+            categoryColorScale={categoryColorScale}
             tracks={tracks}
             milestoneByTrack={this.state.milestoneByTrack}
             trackId={this.state.focusedTrackId}
