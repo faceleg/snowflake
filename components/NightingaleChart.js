@@ -49,7 +49,7 @@ class NightingaleChart extends React.Component {
             height: ${width}px;
           }
           .track-milestone {
-            fill: #eee;
+            fill: #E8E8ED;
             cursor: pointer;
           }
           .track-milestone-current, .track-milestone:hover {

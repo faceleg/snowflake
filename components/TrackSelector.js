@@ -19,7 +19,7 @@ class TrackSelector extends React.Component {
             line-height: 50px;
             width: 50px;
             text-align: center;
-            background: #eee;
+            background: #E8E8ED;
             font-weight: bold;
             font-size: 24px;
             border-radius: 3px;

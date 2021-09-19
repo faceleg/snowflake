@@ -54,7 +54,7 @@ class PointSummaries extends React.Component {
           }
           .point-summary-value {
             width: 120px;
-            background: #eee;
+            background: #E8E8ED;
             font-size: 24px;
             font-weight: bold;
             line-height: 50px;
