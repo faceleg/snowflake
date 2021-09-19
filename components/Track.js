@@ -59,12 +59,19 @@ class Track extends React.Component {
             <tbody>
               {milestones.slice().reverse().map((milestone) => {
                 const isMet = milestone <= currentMilestoneId
+                const milestoneHasContent = track.milestones[milestone - 1]
                 return (
-                  <tr key={milestone}>
-                    <td onClick={() => this.props.handleTrackMilestoneChangeFn(this.props.trackId, milestone)}
-                        style={{ border: `4px solid ${milestone === currentMilestoneId ? '#000' : isMet ? categoryColorScale(track.category) : '#eee'}`, background: isMet ? categoryColorScale(track.category) : undefined }}>
+                  <tr key={milestone}
+                      title={ milestoneHasContent ? 'Click to select this milestone' : 'This path does not progress further' }
+                  >
+                      <td onClick={() => milestoneHasContent && this.props.handleTrackMilestoneChangeFn(this.props.trackId, milestone)}
+                        style={{
+                          border: `4px solid ${milestone === currentMilestoneId ? '#000' : isMet ? categoryColorScale(track.category) : '#eee'}`,
+                          background: isMet ? categoryColorScale(track.category) : undefined
+                        }}
+                      >
                       {milestone}
-                    </td>
+                      </td>
                   </tr>
                 )
               })}
