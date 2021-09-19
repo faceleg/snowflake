@@ -106,7 +106,7 @@ const Track = (props) => {
                           background: isMet ? categoryColorScale(track.category) : undefined
                         }}
                       >
-                      {milestoneHasContent ? milestone : '-'}
+                        {milestoneHasContent || milestone === 0 ? milestone : '-'}
                       </td>
                   </tr>
                 )
