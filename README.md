@@ -33,9 +33,6 @@ This will put a static version of the site in `out/`.
 
 ## Future work
 
-* Add "see next level" button to allow copy & pasting or reviewing of next level without updating one's status
-* Change hash state to store e.g. PLATFORM_ENGINEERING:4 instead of assuming components will always be in the same order
 * Add function to export as a table - to clipboard? Generate XLS?
 * Add function to export to a central location e.g. DynamoDB or similar
 * Update logo
-* Update colours
