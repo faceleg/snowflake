@@ -24,7 +24,7 @@ export const getCategoryColorScale = (tracks) => d3.scaleOrdinal()
     '#DA1710',
     '#FF3DDB',
     '#002F6C',
-    '#7627C',
+    '#990000',
     '#1F1C4F',
     '#E0BAF2',
     '#FFD9F7'
