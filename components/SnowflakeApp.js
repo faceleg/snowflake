@@ -148,11 +148,7 @@ class SnowflakeApp extends React.Component {
             handleTrackMilestoneChangeFn={(track, milestone) => this.handleTrackMilestoneChange(track, milestone)} />
         <div style={{ display: 'flex', paddingBottom: '20px' }}>
           <div style={{ flex: 1 }}>
-            Made with ❤️ by <a href="https://medium.engineering" target="_blank" rel="noreferrer">Medium Eng</a>.
-            Learn about the <a href="https://medium.com/s/engineering-growth-framework" target="_blank" rel="noreferrer">this version of our growth framework</a>
-            {' '}and <a href="https://medium.engineering/engineering-growth-at-medium-4935b3234d25" target="_blank" rel="noreferrer">what we do currently</a>.
-            Get the <a href="https://github.com/Medium/snowflake" target="_blank" rel="noreferrer">source code</a>.
-            Read the <a href="https://medium.com/p/85e078bc15b7" target="_blank" rel="noreferrer">terms of service</a>.
+            Made with ❤️  by your friendly Technology team, adapted from the original <a href="https://github.com/Medium/snowflake" target="_blank" rel="noreferrer">Medium Snowflake</a>.
           </div>
         </div>
       </main>

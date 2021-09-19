@@ -1,19 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import Modal from '../components/Modal'
 import { milestones } from '../constants'
 
-class Track extends React.Component {
-  render () {
-    const { tracks, categoryColorScale } = this.props
+const Track = (props) => {
+  const [showModal, setShowModal] = useState(false)
+    const { tracks, categoryColorScale } = props
 
-    if (!tracks) {
-      console.error('attempting to render without tracks')
-      return null
-    }
-
-    const track = this.props.tracks[this.props.trackId]
-    const currentMilestoneId = this.props.milestoneByTrack[this.props.trackId]
+    const track = props.tracks[props.trackId]
+    const currentMilestoneId = props.milestoneByTrack[props.trackId]
     const currentMilestone = track.milestones[currentMilestoneId - 1]
     return (
       <div className="track">
@@ -48,12 +44,48 @@ class Track extends React.Component {
             line-height: 1.5em;
           }
         `}</style>
-        <div>
-          <h2>{track.displayName}
-          <button style={{ marginLeft: 20 }}>Show level details</button>
-        </h2>
-          <p className="track-description">{track.description}</p>
+        <div style={{ display: 'flex' }}>
+          <h2 style={{ display: 'flex' }}>
+            {track.displayName}
+          </h2>
+          <button
+            style={{
+              marginLeft: '25px',
+              lineHeight: '20px',
+              height: '25px',
+              display: track.milestones[currentMilestoneId] ? 'flex' : 'none'
+            }}
+            onClick={() => setShowModal(true)}
+          >
+            Show next
+          </button>
+          <Modal
+            onClose={() => setShowModal(false)}
+            show={showModal}
+          >
+
+            <div style={{ flex: 1 }}>
+              <h2>Next milestone for { track.displayName } (level { currentMilestoneId + 1 }):</h2>
+              <h3>{track.milestones[currentMilestoneId].summary}</h3>
+              <h4>Example behaviors:</h4>
+              <ul>
+                {track.milestones[currentMilestoneId].signals.map((signal, i) => (
+                  <li key={i}>{signal}</li>
+                ))}
+              </ul>
+              {track.milestones[currentMilestoneId].examples.length
+                ? (<><h4>Example tasks:</h4>
+              <ul>
+                {track.milestones[currentMilestoneId].examples.map((example, i) => (
+                  <li key={i}>{example}</li>
+                ))}
+              </ul></>)
+                : null}
+            </div>
+          </Modal>
+
         </div>
+        <p className="track-description">{track.description}</p>
         <div style={{ display: 'flex' }}>
           <table style={{ flex: 0, marginRight: 50 }}>
             <tbody>
@@ -64,7 +96,7 @@ class Track extends React.Component {
                   <tr key={milestone}
                       title={ milestoneHasContent ? 'Click to select this milestone' : 'This path does not progress further' }
                   >
-                      <td onClick={() => milestoneHasContent && this.props.handleTrackMilestoneChangeFn(this.props.trackId, milestone)}
+                      <td onClick={() => milestoneHasContent && props.handleTrackMilestoneChangeFn(props.trackId, milestone)}
                         style={{
                           border: `4px solid ${milestone === currentMilestoneId ? '#000' : isMet ? categoryColorScale(track.category) : '#eee'}`,
                           background: isMet ? categoryColorScale(track.category) : undefined
@@ -101,7 +133,6 @@ class Track extends React.Component {
         </div>
       </div>
     )
-  }
 }
 
 Track.propTypes = {
